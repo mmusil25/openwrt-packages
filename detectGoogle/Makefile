@@ -35,8 +35,9 @@ define Build/Prepare
 endef
 
 define Build/Compile
-    $(TARGET_CC) $(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include -o $(PKG_BUILD_DIR)/detectGoogle $(PKG_BUILD_DIR)/$(PKG_NAME)/detectGoogle.cpp $(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib -lpcap
+    $(TARGET_CC) $(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include -o $(PKG_BUILD_DIR)/detectGoogle/detectGoogle/detectGoogle $(PKG_BUILD_DIR)/$(PKG_NAME)/$(PKG_NAME)/detectGoogle.cpp $(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib -lpcap
 endef
+
 
 define Package/detectGoogle/install
 	$(INSTALL_DIR) $(1)/usr/bin
