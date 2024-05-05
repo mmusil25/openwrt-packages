@@ -34,8 +34,8 @@ define Build/Prepare
 	# Create tar.gz inside the cloned directory and then move it up to PKG_BUILD_DIR
 	git archive --format=tar.gz --output=$(PKG_NAME).tar.gz HEAD
 	mv $(PKG_NAME).tar.gz $(PKG_BUILD_DIR)/
-	$(CP) $(PKG_BUILD_DIR)/$(PKG_SOURCE) $(PKG_BUILD_DIR)/
 endef
+
 
 
 define Build/Compile
