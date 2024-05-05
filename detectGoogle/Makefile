@@ -26,15 +26,15 @@ define Package/detectGoogle/description
 endef
 
 define Build/Prepare
-    mkdir -p $(PKG_BUILD_DIR)
-    # Clean up the directory first if it exists
-    rm -rf $(PKG_BUILD_DIR)/$(PKG_NAME)
-    git clone $(PKG_SOURCE_URL) $(PKG_BUILD_DIR)/$(PKG_NAME)
-    cd $(PKG_BUILD_DIR)/$(PKG_NAME) && git checkout $(PKG_SOURCE_VERSION)
-    # Create tar.gz inside the cloned directory and then move it up to PKG_BUILD_DIR
-    git archive --format=tar.gz --output=$(PKG_NAME).tar.gz HEAD
-    mv $(PKG_NAME).tar.gz $(PKG_BUILD_DIR)/
-    $(CP) $(PKG_BUILD_DIR)/$(PKG_SOURCE) $(PKG_BUILD_DIR)/
+	mkdir -p $(PKG_BUILD_DIR)
+	# Clean up the directory first if it exists
+	rm -rf $(PKG_BUILD_DIR)/$(PKG_NAME)
+	git clone $(PKG_SOURCE_URL) $(PKG_BUILD_DIR)/$(PKG_NAME)
+	cd $(PKG_BUILD_DIR)/$(PKG_NAME) && git checkout $(PKG_SOURCE_VERSION)
+	# Create tar.gz inside the cloned directory and then move it up to PKG_BUILD_DIR
+	git archive --format=tar.gz --output=$(PKG_NAME).tar.gz HEAD
+	mv $(PKG_NAME).tar.gz $(PKG_BUILD_DIR)/
+	$(CP) $(PKG_BUILD_DIR)/$(PKG_SOURCE) $(PKG_BUILD_DIR)/
 endef
 
 
