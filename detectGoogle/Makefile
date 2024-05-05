@@ -8,7 +8,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git@github.com:mmusil25/openwrt-detect-google.git
 PKG_SOURCE_VERSION:=964a1b24f82cd3442c66b0dc59448f00d1d6032a
-PKG_SOURCE:=$(PKG_NAME).cpp
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)
 PKG_BUILD_DEPENDS:=libpcap
 
@@ -27,19 +27,15 @@ endef
 
 define Build/Prepare
 	mkdir -p $(PKG_BUILD_DIR)
-	# Clean up the directory first if it exists
 	rm -rf $(PKG_BUILD_DIR)/$(PKG_NAME)
 	git clone $(PKG_SOURCE_URL) $(PKG_BUILD_DIR)/$(PKG_NAME)
 	cd $(PKG_BUILD_DIR)/$(PKG_NAME) && git checkout $(PKG_SOURCE_VERSION)
-	# Create tar.gz inside the cloned directory and then move it up to PKG_BUILD_DIR
-	git archive --format=tar.gz --output=$(PKG_NAME).tar.gz HEAD
-	mv $(PKG_NAME).tar.gz $(PKG_BUILD_DIR)/
+	git archive --format=tar.gz --output=$(PKG_NAME)-$(PKG_VERSION).tar.gz HEAD
+	mv $(PKG_NAME)-$(PKG_VERSION).tar.gz $(PKG_BUILD_DIR)/
 endef
 
-
-
 define Build/Compile
-    $(TARGET_CC) $(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include -o $(PKG_BUILD_DIR)/detectGoogle $(PKG_BUILD_DIR)/detectGoogle.cpp $(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib -lpcap
+    $(TARGET_CC) $(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include -o $(PKG_BUILD_DIR)/detectGoogle $(PKG_BUILD_DIR)/$(PKG_NAME)/detectGoogle.cpp $(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib -lpcap
 endef
 
 define Package/detectGoogle/install
