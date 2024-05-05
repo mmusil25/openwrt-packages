@@ -9,7 +9,6 @@ PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git@github.com:mmusil25/openwrt-detect-google.git
 PKG_SOURCE_VERSION:=b96dd0c6229956c8c0d98a044d57572d847751fa
 PKG_SOURCE:=detectGoogle.cpp
-SOURCE_DIR:=/home/mark/code/openwrt-detectGoogle
 PKG_BUILD_DEPENDS:=libpcap
 
 include $(INCLUDE_DIR)/package.mk
