@@ -27,8 +27,12 @@ endef
 
 define Build/Prepare
 	mkdir -p $(PKG_BUILD_DIR)
-	$(CP) $(SOURCE_DIR)/$(PKG_SOURCE) $(PKG_BUILD_DIR)/
+	git clone $(PKG_SOURCE_URL) $(PKG_BUILD_DIR)
+	cd $(PKG_BUILD_DIR) && git checkout $(PKG_SOURCE_VERSION)
+	cd $(PKG_BUILD_DIR) && git archive --format=tar.gz --output=$(PKG_NAME).tar.gz HEAD
+	$(CP) $(PKG_BUILD_DIR)/$(PKG_SOURCE) $(PKG_BUILD_DIR)/
 endef
+
 
 define Build/Compile
 	$(TARGET_CC) $(TARGET_CFLAGS) -o $(PKG_BUILD_DIR)/detectGoogle $(PKG_BUILD_DIR)/detectGoogle.cpp $(TARGET_LDFLAGS) -lpcap
