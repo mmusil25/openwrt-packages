@@ -10,7 +10,7 @@ PKG_SOURCE_URL:=git@github.com:mmusil25/openwrt-detect-google.git
 PKG_SOURCE_VERSION:=0409bbd2f43a5c27246321663e1fd90a7906ca22 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)
-PKG_BUILD_DEPENDS:=libpcap libgpiod libstdc++
+PKG_BUILD_DEPENDS:=libpcap libgpiod 
 
 include $(INCLUDE_DIR)/package.mk
 
