@@ -18,7 +18,7 @@ define Package/detectGoogle
 	SECTION:=utils
 	CATEGORY:=Utilities
 	TITLE:=Detect Google Access
-	DEPENDS:=+libpcap +libgpiod 
+	DEPENDS:=+libpcap +libgpiod +libstdcpp 
 endef
 
 define Package/detectGoogle/description
