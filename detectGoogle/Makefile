@@ -10,7 +10,7 @@ PKG_SOURCE_URL:=git@github.com:mmusil25/openwrt-detect-google.git
 PKG_SOURCE_VERSION:=0409bbd2f43a5c27246321663e1fd90a7906ca22 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)
-PKG_BUILD_DEPENDS:=libpcap libgpiod
+PKG_BUILD_DEPENDS:=libpcap libgpiod libstdc++
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -18,7 +18,7 @@ define Package/detectGoogle
 	SECTION:=utils
 	CATEGORY:=Utilities
 	TITLE:=Detect Google Access
-	DEPENDS:=+libpcap +libgpiod
+	DEPENDS:=+libpcap +libgpiod +libstdc++
 endef
 
 define Package/detectGoogle/description
@@ -35,7 +35,7 @@ define Build/Prepare
 endef
 
 define Build/Compile
-    $(TARGET_CC) $(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include -o $(PKG_BUILD_DIR)/detectGoogle/detectGoogle $(PKG_BUILD_DIR)/$(PKG_NAME)/detectGoogle.cpp $(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib -lpcap -lgpiod
+    $(TARGET_CC) $(TARGET_CFLAGS) -I$(STAGING_DIR)/usr/include -o $(PKG_BUILD_DIR)/detectGoogle/detectGoogle $(PKG_BUILD_DIR)/$(PKG_NAME)/detectGoogle.cpp $(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib -lpcap -lgpiod -lstdc++
 endef
 
 
